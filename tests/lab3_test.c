@@ -1,4 +1,5 @@
 #include <avr/io.h>
+#include <util/delay.h>
 
 int main(void) {
   // set all I/O pins to zeros
@@ -8,9 +9,6 @@ int main(void) {
 
   // set all I/O pins to outputs
   DDRB |= 0xFF;
-  // DDRB |= (1 << PB0) | (1 << PB1) | (1 << PB2) | (1 << PB3) |
-  //         (1 << PB4) | (1 << PB5) | (1 << PB7);
-  // DDRB |= 0xBF;
   DDRC |= 0xFF;
   DDRD |= 0xFF;
 
