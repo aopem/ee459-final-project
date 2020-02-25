@@ -1,26 +1,38 @@
 #include <avr/io.h>
+#include <stdio.h>
 
 void serial_init(unsigned short);
 void serial_out(char);
+void serial_outs(char*);
 char serial_in(void);
 
-#define FOSC 9830400            // Clock frequency
-#define BAUD 19200              // Baud rate used by the LCD
+#define FOSC 7372800            // Clock frequency
+#define BAUD 9600               // Baud rate
 #define MYUBRR FOSC/16/BAUD-1   // Value for UBRR0 register
 
-char str1[] = "12345678901234567890";
-char str2[] = "abcdefghijklmnop";
-char str3[] = "a1b2c3e4f5g6h7i8j9";
+char output[30];
 
 int main(void) {
 
   // voltage level test
   serial_init(MYUBRR);
 
+  char in_byte;
+
   while (1) {
 
     // loopback test
-    // serial_out("a");
+    in_byte = serial_in();
+
+    // string test
+    if (in_byte >= '0' && in_byte <= '9') {
+      sprintf(output, "you put in a number: %c\r\n", in_byte);
+      serial_outs(output);
+    }
+    else {
+      sprintf(output, "you sinned this way: %c\r\n", in_byte);
+      serial_outs(output);
+    }
   }
 
   return 0;
@@ -34,8 +46,17 @@ void serial_init(unsigned short ubrr) {
   UBRR0 = ubrr;              // Set baud rate
   UCSR0B |= (1 << TXEN0);    // Turn on transmitter
   UCSR0B |= (1 << RXEN0);    // Turn on receiver
-  UCSR0C = (3 << UCSZ00);    // Set for async . operation , no parity ,
-                             // one stop bit , 8 data bits
+  UCSR0C = (3 << UCSZ00);    // Set for async. operation, no parity,
+                             // one stop bit, 8 data bits
+}
+
+
+void serial_outs(char *s)
+{
+    char ch;
+
+    while ((ch = *s++) != '\0')
+        serial_out(ch);
 }
 
 /*
