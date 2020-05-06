@@ -17,5 +17,6 @@
 #define GREEN_LED_AND_LOCK  PC3
 #define SERVO               PD6
 #define MOTION_SENSOR       PD7
+#define RFID 				PD5
 
 #endif // CONST_H

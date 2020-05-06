@@ -40,9 +40,9 @@ void lock_init(void) {
 
 void lock_toggle(int on) {
   if (on)
-    PORTC |= (1 << GREEN_LED_AND_LOCK);
+    PORTC |= (1 << GREEN_LED_AND_LOCK);   // unlocks
   else 
-    PORTC &= ~(1 << GREEN_LED_AND_LOCK);
+    PORTC &= ~(1 << GREEN_LED_AND_LOCK);  // locks
 }
 
 int lock_check(void) {
