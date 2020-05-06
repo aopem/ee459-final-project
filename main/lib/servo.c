@@ -1,9 +1,10 @@
+// code modified from: https://www.electronicwings.com/avr-atmega/servo-motor-interfacing-with-atmega16
 #include <avr/io.h>
 #include <util/delay.h>
 #include <servo.h>
 
 void servo_init(unsigned char servo_pin) {
-  DDRD |= (1 << servo_pin);  // Make OC1A pin as output 
+  DDRD |= (1 << SERVO);  // Make OC1A pin as output 
   TCNT1 = 0;                 // Set timer1 count zero
   ICR1 = 2499;               // Set TOP count for timer1 in ICR1 register
 
