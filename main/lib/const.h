@@ -13,6 +13,7 @@
 #define BUZZER              PB2
 #define RPI                 PC0
 #define RED_LED             PC1
+#define REED_SWITCH         PC2
 #define GREEN_LED_AND_LOCK  PC3
 #define SERVO               PD6
 #define MOTION_SENSOR       PD7

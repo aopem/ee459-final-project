@@ -1,4 +1,5 @@
 #include <avr/io.h>
+#include <util/delay.h>
 #include <const.h>
 
 void button_init(int pin) {
@@ -13,9 +14,11 @@ int button_pressed(int pin) {
 
 // do not need function for green LED since
 // it is connected to solenoid lock pin
-void led_red(int on) {
-  DDRC |= (1 << RED_LED);
+void led_red_init(void) {
+  DDRC |= (1 << RED_LED); // configure as output
+}
 
+void led_red(int on) {
   if (on)
     PORTC |= (1 << RED_LED);
   else 
@@ -23,15 +26,16 @@ void led_red(int on) {
 }
 
 void motion_sensor_init(void) {
-  DDRD &= ~(1 << MOTION_SENSOR);  // configure as input
+  DDRD &= ~(1 << MOTION_SENSOR);      // configure as input
 }
 
 int motion_detected(void) {
   return (PIND & MOTION_SENSOR);
 }
 
-void lock_init(int on) {
-  DDRC |= (1 << GREEN_LED_AND_LOCK);
+void lock_init(void) {
+  DDRC |= (1 << GREEN_LED_AND_LOCK);  // configure output to MOSFET
+  DDRC &= ~(1 << REED_SWITCH);        // configure reed switch input
 }
 
 void lock_toggle(int on) {
@@ -39,6 +43,27 @@ void lock_toggle(int on) {
     PORTC |= (1 << GREEN_LED_AND_LOCK);
   else 
     PORTC &= ~(1 << GREEN_LED_AND_LOCK);
+}
+
+int lock_check(void) {
+  return !(PINC & REED_SWITCH);       // reed switch is high when no connection
+}                                     // then gets pulled to GND on connect
+
+
+// buzzer code modified from
+// https://www.robomart.com/blog/buzzer-io-interfacing-atmega32-microcontroller/
+void buzzer_on(void) {
+  unsigned char port_restore = 0;
+  port_restore = PINC;
+  port_restore |= 0x08;
+  PORTC = port_restore;
+}
+ 
+void buzzer_off(void) {
+  unsigned char port_restore = 0;
+  port_restore = PINC;
+  port_restore &= 0xF7;
+  PORTC = port_restore;
 }
 
 /* functions for communicating with Raspberry Pi */
