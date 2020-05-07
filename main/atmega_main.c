@@ -66,7 +66,7 @@ int main(){
 				if (tag_id == USER_RFID) { 			// user
 
 					// unlocks
-					lock_toggle(1);
+					lock_unlock(1);
 
 					// wait 30 secs	
 					_delay_ms(30000);			
@@ -74,7 +74,7 @@ int main(){
 				else if (tag_id == POST_RFID) {	// postman
 
 					// unlocks
-					lock_toggle(1);
+					lock_unlock(1);
 					lcd_clear_screen();
 					lcd_moveto(0,0);
 					lcd_stringout("Successful Delivery?");
