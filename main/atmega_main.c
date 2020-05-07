@@ -20,6 +20,17 @@ int main(){
 	uint8_t tag_id = 0; // for reading RFID tag data
 
 	init();							// initialize all modules
+	sei();							// global interrupt enable
+
+	// this is a c++ library!! (for wifi module)
+	Adafruit_CC3000_Client client(); 	/* C++ CODE */
+	client.connect();									/* C++ CODE */
+
+	int package_inside = 0  // use to see if there is a package inside
+
+	// used with weight sensor
+	double tare_point_128     = HX711_get_offset();
+	double current_weight_128 = HX711_read_average(10) - tare_point_128;
 
 	while(1) {					// main loop
 
@@ -31,6 +42,9 @@ int main(){
 
 			// set count back to zero
 			ms_count = 0;
+
+			// prepare user notification
+			client.write("Motion detected at mailbox"); /* C++ CODE */
 		}
 
 		if (ms_count > 1000  && !motion_sensor_flag) {
@@ -44,7 +58,7 @@ int main(){
 			rfid_flag = 0;
 
 			// read rfid tag
-			tag_id = mfrc522_request(PICC_REQALL, str);
+			tag_id = rfid_request(PICC_REQALL, str);
 
 			if (tag_id == CARD_FOUND) {
 			
@@ -74,6 +88,9 @@ int main(){
 						lcd_stringout("Thank you!");
 						_delay_ms(2000);
 						lcd_clear_screen();
+
+						// prepare user notification
+						client.write("Package delivered successfully"); /* C++ CODE */
 					}
 					else if (button_pressed(UNSUCCESSFUL_BUTTON)) {
 
@@ -84,11 +101,17 @@ int main(){
 							lcd_stringout("Creating Space");
 							servo_rotate_to(90);
 							ts_flag = 1;
+
+							// prepare user notification
+							client.write("Package delivered successfully"); /* C++ CODE */
 						}
 						else {
 							lcd_clear_screen();
 							lcd_moveto(0,0);
 							lcd_stringout("No Extra Space");
+
+							// prepare user notification
+							client.write("Package delivery unsuccessful"); /* C++ CODE */
 						}
 					}
 
@@ -96,6 +119,9 @@ int main(){
 					_delay_ms(30000);					
 					}
 					else {	// thief
+						// prepare user notification
+						client.write("SECURITY ALERT: Unauthorized attempt to unlock"); /* C++ CODE */
+
 						buzzer_on();
 						rpi_camera(1);
 						_delay_ms(1000);
@@ -116,19 +142,25 @@ int main(){
 			else {
 				buzzer_off();
 			}
-		}
+		} // rfid flag if statement
 
 		if (door_count > 5000 && !lock_locked()) {	// if 5 mins has passed
-			// alert user
+			
+			// alert user 
+			client.write("SECURITY ALERT: Door left open for at least 5 minutes"); /* C++ CODE */
 		}
 		else {
 			buzzer_off();
 		}
 
-		if (wifi_flag) {
+		// check if current weight shows there is a package present
+		if (current_weight_128 > 1)
+			package_inside = 1;
+		else
+			package_inside = 0
 
-
-		}
+		// update weight sensor, counts
+		current_weight_128 = HX711_read_average(10) - tare_point_128;
 
 		ms_count++;
 		door_count++;
@@ -140,7 +172,7 @@ int main(){
 
 
 void init() {
-	i2c_init();
+	i2c_init(BDIV);
 	spi_init();
 	button_init(SUCCESSFUL_BUTTON);
 	button_init(UNSUCCESSFUL_BUTTON);
@@ -151,8 +183,7 @@ void init() {
 	lcd_init();
 	servo_init();
 	rfid_init();
-	// hx711_init();
-	// wifi_init();
+	HX711_init(128);
 }
 
 
@@ -165,10 +196,5 @@ ISR(PCINT2_vect) {
 	if (PIND & RFID == 1) {			// RFID interrupt is triggered
 		rfid_flag = 1;
 	}
-}
-
-ISR(INT0_vect) {
-  // wifi module
-  wifi_flag = 1;
 }
 
