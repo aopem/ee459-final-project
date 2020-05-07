@@ -1,4 +1,4 @@
-# EE 459 Final Project  - Spring 2020
+# USC EE 459 Final Project - Spring 2020
 
 #### Title: Google Parcel
 
@@ -7,8 +7,16 @@
 #### Members: Andrew Opem, David Karapetyan, Natan Benchimol
 
 
+### Project Outline
 
-## Program Microcontroller
+For our final project we designed the electrical hardware and software of a smart mailbox. 
+The hardware consists of sensors, controllers, and microelectronics likes resistors, capacitors, etc. 
+This repository contains the software that is intended to drive the hardware. 
+It utilizes the interrupt pins and a main while loop to detect when certain sensors are triggered.
+
+
+
+### Program Microcontroller
 1. Change `OBJECTS` line in `Makefile` to correct `.o` file.
     * ex. `tests/lab3_test.o`
 2. `make flash`
