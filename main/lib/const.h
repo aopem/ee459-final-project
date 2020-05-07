@@ -15,8 +15,10 @@
 #define RED_LED             PC1
 #define REED_SWITCH         PC2
 #define GREEN_LED_AND_LOCK  PC3
+#define CC3000              PD2
+#define HX711               PD4
+#define RFID                PD5
 #define SERVO               PD6
 #define MOTION_SENSOR       PD7
-#define RFID 				PD5
 
 #endif // CONST_H
