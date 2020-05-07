@@ -65,3 +65,15 @@ void lcd_stringout(char* str, unsigned char len) {
   }
 }
 
+void lcd_clear_screen(void) {
+  uint8_t cmd[4];               // 4 bytes to hold 2 byte prefix (0xFE)                     
+                                // last 2 bytes for actual command 
+
+  cmd[0] = Prefix >> 8;         // Separate into 2 bytes, where MSB first
+  cmd[1] = Prefix & 0xFF;       // and LSB second   
+  cmd[2] = ClearScreen >> 8;    // repeat for clear screen command
+  cmd[3] = ClearScreen & 0xFF;
+
+  i2c_io(LCDAddressI2C, NULL, 0, cmd, 4, NULL, 0); 
+}
+

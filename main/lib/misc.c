@@ -38,17 +38,16 @@ void lock_init(void) {
   DDRC &= ~(1 << REED_SWITCH);        // configure reed switch input
 }
 
-void lock_toggle(int on) {
+void lock_unlock(int on) {
   if (on)
     PORTC |= (1 << GREEN_LED_AND_LOCK);   // unlocks
   else 
     PORTC &= ~(1 << GREEN_LED_AND_LOCK);  // locks
 }
 
-int lock_check(void) {
+int lock_locked(void) {
   return !(PINC & REED_SWITCH);       // reed switch is high when no connection
 }                                     // then gets pulled to GND on connect
-
 
 // buzzer code modified from
 // https://www.robomart.com/blog/buzzer-io-interfacing-atmega32-microcontroller/

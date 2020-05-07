@@ -19,6 +19,11 @@ void rfid_init() {
   {
     rfid_write(TxControlReg,byte|0x03);
   }
+
+  byte = mfrc522_read(ComIEnReg);
+  mfrc522_write(ComIEnReg,byte|0x20);
+  byte = mfrc522_read(DivIEnReg);
+  mfrc522_write(DivIEnReg,byte|0x80);
 }
 
 void rfid_write(uint8_t reg, uint8_t data) {
