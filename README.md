@@ -1,12 +1,11 @@
-EE 459 Final Project 
+# EE 459 Final Project  - Spring 2020
 
-Spring 2020
+#### Title: Google Parcel
 
-Due Date: 05/07/20
+#### Due Date: 05/07/20
 
-Members: Andrew Opem, David Karapetyan, Natan Benchimol
+#### Members: Andrew Opem, David Karapetyan, Natan Benchimol
 
-Title: Google Parcel
 
 
 ## Program Microcontroller
@@ -16,32 +15,34 @@ Title: Google Parcel
 
 
 
-Adapted Modules:
+### Adapted Modules:
 
-	For each module in our program that adapted code snippets from online sources, the links for each source are listed below.
-	The full disclaimers for each snippet is at the top of each .c or .cpp file.
+For each module in our program that adapted code snippets from online sources, the links for each source are listed below.
+The full disclaimers for each snippet is at the top of each .c or .cpp file.
 
-		I2C - http://ee-classes.usc.edu/ee459/library/plaintext.php?file=samples/AVR/at328-7.c
+	* I2C - http://ee-classes.usc.edu/ee459/library/plaintext.php?file=samples/AVR/at328-7.c
 
-		SPI -  https://github.com/asif-mahmud/MIFARE-RFID-with-AVR/blob/master/lib/avr-rfid-library/lib/spi.c
+	* SPI -  https://github.com/asif-mahmud/MIFARE-RFID-with-AVR/blob/master/lib/avr-rfid-library/lib/spi.c
 
-		LCD - http://ee-classes.usc.edu/ee459/library/plaintext.php?file=samples/AVR/at328-7.c
+	* LCD - http://ee-classes.usc.edu/ee459/library/plaintext.php?file=samples/AVR/at328-7.c
 
-		HX711 - https://github.com/getsiddd/HX711
+	* HX711 - https://github.com/getsiddd/HX711
 
-		CC3000 - https://github.com/asif-mahmud/MIFARE-RFID-with-AVR/blob/master/lib/avr-rfid-library/lib/mfrc522.c
+	* CC3000 - https://github.com/asif-mahmud/MIFARE-RFID-with-AVR/blob/master/lib/avr-rfid-library/lib/mfrc522.c
 
-		RFID - https://github.com/asif-mahmud/MIFARE-RFID-with-AVR/blob/master/lib/avr-rfid-library/lib/mfrc522.c
+	* RFID - https://github.com/asif-mahmud/MIFARE-RFID-with-AVR/blob/master/lib/avr-rfid-library/lib/mfrc522.c
 
-		SERVO - https://www.electronicwings.com/avr-atmega/servo-motor-interfacing-with-atmega16
+	* SERVO - https://www.electronicwings.com/avr-atmega/servo-motor-interfacing-with-atmega16
 
 
-Additional Notes:
+### Additional Notes:
 
-	General:
-		Since we did not have access to the hardware in our design, we were unable to test our code on any of the hardware components.
+* General:
 
-	CC3000 WiFi Module:
-		The code for this module was adapted from an arduino library and has some snippets in C++.
-		We did not convert all of the code to C, so the final project will not compile properly. 
-		We mentioned this to professor Weber and he said that he understands that given enough time we would be able to convert the code to C so he is not too worried about that. 
+	Since we did not have access to the hardware in our design, we were unable to test our code on any of the hardware components.
+
+* CC3000 WiFi Module:
+
+	The code for this module was adapted from an arduino library and has some snippets in C++.
+	We did not convert all of the code to C, so the final project will not compile properly. 
+	We mentioned this to professor Weber and he said that he understands that given enough time we would be able to convert the code to C so he is not too worried about that. 
