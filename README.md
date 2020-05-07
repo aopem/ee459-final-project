@@ -18,21 +18,21 @@
 ### Adapted Modules:
 
 For each module in our program that adapted code snippets from online sources, the links for each source are listed below.
-The full disclaimers for each snippet is at the top of each .c or .cpp file.
+The full disclaimers for each snippet is at the top of each `.c` or `.cpp` file.
 
-	* I2C - http://ee-classes.usc.edu/ee459/library/plaintext.php?file=samples/AVR/at328-7.c
+* [I2C](http://ee-classes.usc.edu/ee459/library/plaintext.php?file=samples/AVR/at328-7.c)
 
-	* SPI -  https://github.com/asif-mahmud/MIFARE-RFID-with-AVR/blob/master/lib/avr-rfid-library/lib/spi.c
+* [SPI](https://github.com/asif-mahmud/MIFARE-RFID-with-AVR/blob/master/lib/avr-rfid-library/lib/spi.c)
 
-	* LCD - http://ee-classes.usc.edu/ee459/library/plaintext.php?file=samples/AVR/at328-7.c
+* [LCD](http://ee-classes.usc.edu/ee459/library/plaintext.php?file=samples/AVR/at328-7.c)
 
-	* HX711 - https://github.com/getsiddd/HX711
+* [HX711](https://github.com/getsiddd/HX711)
 
-	* CC3000 - https://github.com/asif-mahmud/MIFARE-RFID-with-AVR/blob/master/lib/avr-rfid-library/lib/mfrc522.c
+* [CC3000](https://github.com/asif-mahmud/MIFARE-RFID-with-AVR/blob/master/lib/avr-rfid-library/lib/mfrc522.c)
 
-	* RFID - https://github.com/asif-mahmud/MIFARE-RFID-with-AVR/blob/master/lib/avr-rfid-library/lib/mfrc522.c
+* [RFID](https://github.com/asif-mahmud/MIFARE-RFID-with-AVR/blob/master/lib/avr-rfid-library/lib/mfrc522.c)
 
-	* SERVO - https://www.electronicwings.com/avr-atmega/servo-motor-interfacing-with-atmega16
+* [SERVO](https://www.electronicwings.com/avr-atmega/servo-motor-interfacing-with-atmega16)
 
 
 ### Additional Notes:
