@@ -54,3 +54,7 @@ The full disclaimers for each snippet is at the top of each `.c` or `.cpp` file.
 	The code for this module was adapted from an arduino library and has some snippets in C++.
 	We did not convert all of the code to C, so the final project will not compile properly. 
 	We mentioned this to professor Weber and he said that he understands that given enough time we would be able to convert the code to C so he is not too worried about that. 
+
+* RFID Module:
+
+	When checking for an RFID match, we chose generic test values to compare with. In reality, each module that is shipped to a customer will have to have its own unique RFID associated with the hardware. We did not generate an algorithm or function to distribute these as this is just a protoype. 
